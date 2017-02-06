@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
+import ServicesList from './ServicesList';
 
-
-class TodoApp extends Component {
+class ServicesApp extends Component {
     constructor(props) {
         super(props);
 
@@ -16,7 +16,6 @@ class TodoApp extends Component {
             url: '/',
             method: 'post',
             success: function(data) {
-                console.log(data);
                 this.setState({ products: data});
             }.bind(this),
                 error: function(xhr, status, err) {
@@ -27,23 +26,14 @@ class TodoApp extends Component {
 
 
     render() {
-
-        let commentNodes = this.state.products.map(function (comment){
-            return (
-                <div>
-                    ----------------
-                    <h1>{comment.title}</h1>
-                </div>
-            );
-        });
         return (
             <div className="App">
-                {commentNodes}
+                <ServicesList products={this.state.products}/>
             </div>
         );
     }
 }
 
-export default TodoApp;
+export default ServicesApp;
 
 

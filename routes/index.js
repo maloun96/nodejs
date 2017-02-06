@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
 });
 
 
-/*Get all products to React Component Todo*/
+/*Get all products to React Component Services*/
 router.post('/', function (req, res, next) {
     Product.find( function ( err, prod, count ){
         res.json(prod);

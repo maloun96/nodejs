@@ -3,7 +3,7 @@ var router = express.Router();
 var Product = require('../models/product');
 let csrf = require('csurf');
 var passport = require('passport');
-
+var middleware = require('../config/middleware');
 let csrfProtection = csrf();
 
 router.use(csrfProtection);
@@ -33,7 +33,7 @@ router.post('/signup', passport.authenticate('local.signup', {
     failureFlash: true
 }));
 
-router.get('/profile', function(req, res, next){
+router.get('/profile', middleware.isAuthenticated, function(req, res, next){
     res.render('user/profile');
 });
 

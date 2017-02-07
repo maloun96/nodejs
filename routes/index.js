@@ -12,7 +12,6 @@ router.use(csrfProtection);
 /* GET home page. */
 /*Get a home page view*/
 router.get('/', middleware.isAuthenticated, function (req, res, next) {
-    console.log('TEst here');
     Product.find( function ( err, prod, count ){
         res.render('index', {title: 'Todos', products: prod});
     });
@@ -21,7 +20,6 @@ router.get('/', middleware.isAuthenticated, function (req, res, next) {
 
 /*Get all products to React Component Services*/
 router.post('/',  middleware.isAuthenticated, function (req, res, next) {
-    console.log('123');
     Product.find( function ( err, prod, count ){
         res.json(prod);
     });

@@ -12,7 +12,7 @@ var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
-
+var csrf = require('csurf');
 
 var app = express();
 
@@ -37,7 +37,7 @@ app.use(session({secret: 'mysupersecret', resave: false, saveUninitialized: fals
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(csrf());
 
 /*Static files*/
 app.use(express.static(path.join(__dirname, 'public')));
@@ -46,6 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function (req, res, next) {
     res.locals.login = req.isAuthenticated();
     res.locals.user = req.user;
+    res.locals.token = req.csrfToken();
     next();
 });
 

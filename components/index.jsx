@@ -1,8 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ServicesApp from './Services/ServicesApp'
+import User from '../components/user';
+import App from '../components/app';
 
-ReactDOM.render(
-    <ServicesApp />,
-    document.getElementById('root')
-);

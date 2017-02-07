@@ -16,7 +16,7 @@ router.get('/signin', function(req, res, next){
 
 // process the login form
 router.post('/signin', passport.authenticate('local-login', {
-    successRedirect : '/user/profile', // redirect to the secure profile section
+    successRedirect : '/', // redirect to the secure profile section
     failureRedirect : '/user/signin', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
 }));
@@ -28,12 +28,12 @@ router.get('/signup', function(req, res, next){
 });
 
 router.post('/signup', passport.authenticate('local.signup', {
-    successRedirect: '/user/profile',
+    successRedirect: '/',
     failureRedirect: '/user/signup',
     failureFlash: true
 }));
 
-router.get('/profile', middleware.isAuthenticated, function(req, res, next){
+router.get('/profile', /*middleware.isAuthenticated, */function(req, res, next){
     res.render('user/profile');
 });
 
